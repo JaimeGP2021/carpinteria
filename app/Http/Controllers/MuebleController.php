@@ -13,7 +13,8 @@ class MuebleController extends Controller
      */
     public function index()
     {
-        //
+        $muebles = Mueble::all();
+        return view('muebles.index', ['muebles' => $muebles]);
     }
 
     /**
