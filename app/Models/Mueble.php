@@ -12,6 +12,14 @@ class Mueble extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable =
+    [
+        'denominacion',
+        'precio',
+        'muebleable_type',
+        'muebleable_id',
+    ];
+
     public function muebleable()
     {
         return $this->morphTo();

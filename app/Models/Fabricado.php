@@ -12,6 +12,12 @@ class Fabricado extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable=
+    [
+        'ancho',
+        'alto',
+    ];
+
     public function mueble()
     {
         return $this->morphOne(Mueble::class, 'muebleable');

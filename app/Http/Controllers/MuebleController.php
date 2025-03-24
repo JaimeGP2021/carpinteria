@@ -13,7 +13,8 @@ class MuebleController extends Controller
      */
     public function index()
     {
-        $muebles = Mueble::all();
+        $muebles = Mueble::with('muebleable')->get();
+
         return view('muebles.index', ['muebles' => $muebles]);
     }
 
@@ -22,7 +23,7 @@ class MuebleController extends Controller
      */
     public function create()
     {
-        //
+        return view('muebles.create');
     }
 
     /**
