@@ -13,9 +13,11 @@
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Denominación
-                    </th><th scope="col" class="px-6 py-3">
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Precio/u
-                    </th><th scope="col" class="px-6 py-3">
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Proporciones
                     <th scope="col" colspan="2" class="px-6 py-3">
                         Acciones
@@ -25,16 +27,19 @@
             <tbody>
                 @foreach ($muebles as $mueble)
                 <tr class="odd:bg-white even:bg-gray-50 borden-b">
-                    <td class="px-6 py-4">{{ $mueble->denominacion }}</td>
-
+                    <td class="px-6 py-4">
+                        <a href="{{ route('muebles.show', $mueble) }}">
+                            {{ $mueble->denominacion }}
+                        </a>
+                    </td>
                     <td class="px-6 py-4">{{ $mueble->precioCalculado() }} € </td>
 
                     @if ($mueble->muebleable::Class == 'App\Models\Fabricado')
-                        <td class="px-6 py-4">
-                            {{ $mueble->muebleable->ancho}} x {{ $mueble->muebleable->alto}}
-                        </td>
+                    <td class="px-6 py-4">
+                        {{ $mueble->muebleable->ancho}} x {{ $mueble->muebleable->alto}}
+                    </td>
                     @else
-                        <td>{{ " " }}</td>
+                    <td>{{ " " }}</td>
                     @endif
 
                     <td class="px-6 py-4">
@@ -46,7 +51,9 @@
                         <form action="{{ route('muebles.destroy', $mueble) }}" method="post">
                             @csrf
                             @method('delete')
-                            <x-primary-button onclick="event.preventDefault(); if (confirm('¿Está seguro?')) this.closest('form').submit();">Eliminar</x-primary-button>
+                            <x-primary-button
+                                onclick="event.preventDefault(); if (confirm('¿Está seguro?')) this.closest('form').submit();">
+                                Eliminar</x-primary-button>
                         </form>
                     </td>
                 </tr>
