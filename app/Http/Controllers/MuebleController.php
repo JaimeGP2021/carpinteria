@@ -67,7 +67,7 @@ class MuebleController extends Controller
      */
     public function edit(Mueble $mueble)
     {
-        //
+        return view('muebles.edit', ['mueble' => $mueble]);
     }
 
     /**
