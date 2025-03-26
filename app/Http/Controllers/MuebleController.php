@@ -34,6 +34,7 @@ class MuebleController extends Controller
     public function store(StoreMuebleRequest $request)
     {
         $mueble = new Mueble();
+        $mueble->fill($request->validated());
 
         if ($request->tipo == 'fabricado')
         {
@@ -46,7 +47,6 @@ class MuebleController extends Controller
             $categoria = new Prefabricado();
         }
 
-        $mueble->fill($request->validated());
         $categoria->save();
         $mueble->muebleable()->associate($categoria);
         $mueble->save();
@@ -59,7 +59,7 @@ class MuebleController extends Controller
      */
     public function show(Mueble $mueble)
     {
-        //
+        return view('muebles.show', ['mueble' => $mueble]);
     }
 
     /**

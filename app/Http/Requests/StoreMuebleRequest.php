@@ -22,11 +22,11 @@ class StoreMuebleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "denominacion" => 'required|string',
-            "precio" => 'required|decimal:0,2|min:0.1',
+            "denominacion" => 'required|string|max:255',
+            "precio" => 'required|decimal:0,2|min:0.01',
             "tipo" => 'required|in:fabricado,prefabricado',
-            "ancho" => 'nullable|required_if:tipo,fabricado|decimal:0,2|min:0.01',
-            "alto" => 'nullable|required_if:tipo,fabricado|decimal:0,2|min:0.01',
+            "ancho" => 'nullable|required_if:tipo,fabricado|decimal:0,2|min:0.01|max_digits:10',
+            "alto" => 'nullable|required_if:tipo,fabricado|decimal:0,2|min:0.01|max_digits:10',
         ];
     }
 }
