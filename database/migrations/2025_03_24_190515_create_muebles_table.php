@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('muebles', function (Blueprint $table) {
             $table->id();
-            $table->string('denominación');
+            $table->string('denominacion');
             $table->decimal('precio', 10, 2);
             $table->morphs('muebleable');
             $table->timestamps();
