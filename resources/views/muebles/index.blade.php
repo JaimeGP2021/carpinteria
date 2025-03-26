@@ -27,12 +27,11 @@
                 <tr class="odd:bg-white even:bg-gray-50 borden-b">
                     <td class="px-6 py-4">{{ $mueble->denominacion }}</td>
 
-                    <td class="px-6 py-4">{{ $mueble->precioCalculado() }}</td>
+                    <td class="px-6 py-4">{{ $mueble->precioCalculado() }} € </td>
 
-                    {{-- Asegurate de que esto va bien --}}
-                    @if ($mueble->muebleable::Class == 'Fabricado')
+                    @if ($mueble->muebleable::Class == 'App\Models\Fabricado')
                         <td class="px-6 py-4">
-                            {{ $mueble->muebleable->alto}} x {{ $mueble->muebleable->alto}}
+                            {{ $mueble->muebleable->ancho}} x {{ $mueble->muebleable->alto}}
                         </td>
                     @else
                         <td>{{ " " }}</td>

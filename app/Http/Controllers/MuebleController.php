@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMuebleRequest;
 use App\Http\Requests\UpdateMuebleRequest;
+use App\Models\Fabricado;
 use App\Models\Mueble;
+use App\Models\Prefabricado;
 
 class MuebleController extends Controller
 {
@@ -31,7 +33,25 @@ class MuebleController extends Controller
      */
     public function store(StoreMuebleRequest $request)
     {
-        //
+        $mueble = new Mueble();
+
+        if ($request->tipo == 'fabricado')
+        {
+            $categoria = new Fabricado();
+            $categoria->ancho = $request->ancho;
+            $categoria->alto = $request->alto;
+        }
+        elseif ($request->tipo == 'prefabricado')
+        {
+            $categoria = new Prefabricado();
+        }
+
+        $mueble->fill($request->validated());
+        $categoria->save();
+        $mueble->muebleable()->associate($categoria);
+        $mueble->save();
+
+        return redirect()->route('muebles.index');
     }
 
     /**
@@ -63,6 +83,7 @@ class MuebleController extends Controller
      */
     public function destroy(Mueble $mueble)
     {
-        //
+        $mueble->delete();
+        return redirect()->route('muebles.index');
     }
 }
